@@ -16,6 +16,9 @@
 
 #import <react/config/ReactNativeConfig.h>
 
+#import "React/RCTI18nUtil.h" // Added to allow RTL in react native apps
+
+
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
   RCTSurfacePresenterBridgeAdapter *_bridgeAdapter;
@@ -54,6 +57,11 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  
+  // Make an app RTL-ready
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
+  
   return YES;
 }
 
